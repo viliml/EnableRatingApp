@@ -16,7 +16,7 @@ import com.google.appinventor.components.runtime.Web;
 import com.google.appinventor.components.runtime.collect.Lists;
 import com.google.appinventor.components.runtime.util.CsvUtil;
 import com.google.appinventor.components.runtime.util.YailList;
-import com.vlendvaj.era.R;
+
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -27,7 +27,7 @@ import android.view.View;
 public class MainActivity extends AbstractDatabaseForm {
 
 	// TODO REMOVE!!
-	private static boolean DEBUG = true;
+	private static boolean DEBUG = false;
 
 	public static final String EXTRA_USERNAME_TAG = MainActivity.class.getName() + ".username";
 
@@ -37,7 +37,7 @@ public class MainActivity extends AbstractDatabaseForm {
 	private Button btnApps;
 	private TextBox txbName;
 	private Button btnSubmit;
-	private Button btnDeleteDB;
+	// private Button btnDeleteDB;
 
 	private Web web;
 
@@ -92,8 +92,8 @@ public class MainActivity extends AbstractDatabaseForm {
 		btnSubmit.Visible(false);
 		btnSubmit.Text(getString(R.string.btnSubmit));
 
-		btnDeleteDB = new Button(this);
-		btnDeleteDB.Text("!!ADMIN!!\nDELETE INTERNAL DATABASE");
+		// btnDeleteDB = new Button(this);
+		// btnDeleteDB.Text("!!ADMIN!!\nDELETE INTERNAL DATABASE");
 
 		web = new Web(this);
 
@@ -174,12 +174,12 @@ public class MainActivity extends AbstractDatabaseForm {
 				btnAddClick();
 				return true;
 			}
-		} else if (component == btnDeleteDB) {
-			switch (eventName) {
-			case "Click":
-				tinyDB.ClearAll();
-				return true;
-			}
+			// } else if (component == btnDeleteDB) {
+			// switch (eventName) {
+			// case "Click":
+			// tinyDB.ClearAll();
+			// return true;
+			// }
 		} else if (component == btnApps) {
 			switch (eventName) {
 			case "Click":
