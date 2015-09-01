@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Enable Aplikacija za Ocjenjivanje</string>
+    <string name="btnSubmit">Pošalji ocjenu</string>
+    <string name="btnAdd">Dodaj novu aplikaciju</string>
+    <string name="btnApps">Prikaži popis aplikacija</string>
+    <string name="txbName">Ime aplikacije</string>
+    <string name="firstLaunch">Prvo pokretanje</string>
+    <string name="txbUserName">Vaše korisničko ime</string>
+    <string name="btnProceed">Dalje</string>
+    <string name="error">Greška</string>
+    <string name="commentHint">Komentirajte svoju ocjenu</string>
+    <string name="listFilter">Pretraži aplikacije…</string>
+
+</resources>

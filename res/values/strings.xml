@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Enable Rating App</string>
+    <string name="btnSubmit">Submit</string>
+    <string name="btnAdd">Add new app</string>
+    <string name="btnApps">Show list of apps</string>
+    <string name="txbName">Name of game to rate</string>
+    <string name="firstLaunch">Game Rating first launch</string>
+    <string name="txbUserName">Your username</string>
+    <string name="btnProceed">Proceed</string>
+    <string name="error">Error</string>
+    <string name="commentHint">Comment on your rating</string>
+    <string name="listFilter">Search apps…</string>
+
+</resources>

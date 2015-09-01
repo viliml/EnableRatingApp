@@ -1,0 +1,12 @@
+com.google.appinventor.components.runtime.Form: Form()
+com.vlendvaj.gamerating.AbstractDatabaseForm: AbstractDatabaseForm()
+com.vlendvaj.gamerating.AppDetailActivity
+com.vlendvaj.gamerating.AppDetailActivity: AppDetailActivity()
+com.vlendvaj.gamerating.AppViewActivity
+com.vlendvaj.gamerating.AppViewActivity: AppViewActivity()
+com.vlendvaj.gamerating.FirstLaunchActivity
+com.vlendvaj.gamerating.FirstLaunchActivity: FirstLaunchActivity()
+com.vlendvaj.gamerating.MainActivity
+com.vlendvaj.gamerating.MainActivity: MainActivity()
+com.vlendvaj.gamerating.fragment.AppListFragment
+com.vlendvaj.gamerating.fragment.AppListFragment: AppListFragment()
