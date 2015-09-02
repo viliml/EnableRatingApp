@@ -12,5 +12,7 @@
     <string name="error">Greška</string>
     <string name="commentHint">Komentirajte svoju ocjenu</string>
     <string name="listFilter">Pretraži aplikacije…</string>
+    <string name="textRatingSubmit">Ocjenite ovu aplikaciju</string>
+    <string name="logOut">Odjavite se</string>
 
 </resources>
