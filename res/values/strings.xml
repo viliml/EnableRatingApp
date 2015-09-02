@@ -12,5 +12,8 @@
     <string name="error">Error</string>
     <string name="commentHint">Comment on your rating</string>
     <string name="listFilter">Search apps…</string>
+    <string name="test">Test</string>
+    <string name="textRatingSubmit">Rate this game:</string>
+    <string name="logOut">Log Out</string>
 
 </resources>

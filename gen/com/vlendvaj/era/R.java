@@ -17,20 +17,22 @@ public final class R {
         public static final int FrameLayout1=0x7f070000;
         public static final int RelativeLayout1=0x7f070004;
         public static final int appName=0x7f070003;
-        public static final int btnAdd=0x7f07000d;
-        public static final int btnApps=0x7f07000e;
-        public static final int btnLogOut=0x7f070010;
-        public static final int btnProceed=0x7f07000b;
-        public static final int btnSubmit=0x7f070008;
-        public static final int comment=0x7f070007;
-        public static final int commentList=0x7f070009;
+        public static final int btnAdd=0x7f07000f;
+        public static final int btnApps=0x7f070010;
+        public static final int btnLogOut=0x7f070012;
+        public static final int btnProceed=0x7f07000d;
+        public static final int btnSubmit=0x7f07000a;
+        public static final int comment=0x7f070009;
+        public static final int commentList=0x7f07000b;
         public static final int fragmentList=0x7f070001;
         public static final int frameDetails=0x7f070002;
-        public static final int listFilter=0x7f07000c;
+        public static final int listFilter=0x7f07000e;
         public static final int ratingBar=0x7f070005;
+        public static final int ratingBarUser=0x7f070008;
         public static final int ratingText=0x7f070006;
-        public static final int txbName=0x7f07000f;
-        public static final int txbUserName=0x7f07000a;
+        public static final int textView1=0x7f070007;
+        public static final int txbName=0x7f070011;
+        public static final int txbUserName=0x7f07000c;
     }
     public static final class layout {
         public static final int appview_activity=0x7f040000;
@@ -53,6 +55,9 @@ public final class R {
         public static final int error=0x7f050008;
         public static final int firstLaunch=0x7f050005;
         public static final int listFilter=0x7f05000a;
+        public static final int logOut=0x7f05000d;
+        public static final int test=0x7f05000b;
+        public static final int textRatingSubmit=0x7f05000c;
         public static final int txbName=0x7f050004;
         public static final int txbUserName=0x7f050006;
     }

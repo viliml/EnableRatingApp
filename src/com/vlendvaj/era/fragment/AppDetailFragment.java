@@ -6,24 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.util.Log;
-import android.util.Pair;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.RatingBar;
-import android.widget.SimpleAdapter;
-import android.widget.SimpleAdapter.ViewBinder;
-import android.widget.TextView;
-
 import com.google.appinventor.components.runtime.AndroidViewComponent;
 import com.google.appinventor.components.runtime.Component;
 import com.google.appinventor.components.runtime.ComponentContainer;
@@ -43,11 +25,30 @@ import com.vlendvaj.era.AppViewActivity;
 import com.vlendvaj.era.Constants;
 import com.vlendvaj.era.R;
 
-public class AppDetailFragment extends Fragment implements ComponentContainer, HandlesEventDispatching,
-		OnClickListener {
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.util.Log;
+import android.util.Pair;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.SimpleAdapter;
+import android.widget.SimpleAdapter.ViewBinder;
+import android.widget.TextView;
+
+public class AppDetailFragment extends Fragment
+		implements ComponentContainer, HandlesEventDispatching, OnClickListener {
 
 	private RatingBar ratingBar;
 	private TextView ratingText;
+	private RatingBar ratingBarUser;
 	private EditText comment;
 	private Button btnSubmit;
 
@@ -104,21 +105,22 @@ public class AppDetailFragment extends Fragment implements ComponentContainer, H
 		((TextView) getActivity().findViewById(R.id.appName)).setText(getShownName());
 		ratingBar = (RatingBar) getActivity().findViewById(R.id.ratingBar);
 		ratingText = (TextView) getActivity().findViewById(R.id.ratingText);
+		ratingBarUser = (RatingBar) getActivity().findViewById(R.id.ratingBarUser);
 		btnSubmit = (Button) getActivity().findViewById(R.id.btnSubmit);
 		comment = (EditText) getActivity().findViewById(R.id.comment);
 
 		ratingText.setText(getShownRating().toString().subSequence(0,
-				Math.min(3, getShownRating().toString().length()))
-				+ " / 5");
+				Math.min(3, getShownRating().toString().length())) + " / 5");
+
+		ratingBar.setEnabled(false);
+		ratingBar.setStepSize(0.01f);
+		ratingBar.setRating(getShownRating().floatValue());
 
 		if ((boolean) tinyDB.GetValue(getShownId().toString(), false)) {
-			ratingBar.setEnabled(false);
-			ratingBar.setStepSize(0.01f);
-			ratingBar.setRating(getShownRating().floatValue());
 
+			ratingBarUser.setVisibility(View.GONE);
 			btnSubmit.setVisibility(View.GONE);
 			comment.setVisibility(View.GONE);
-
 		} else {
 			btnSubmit.setOnClickListener(this);
 		}
@@ -131,24 +133,24 @@ public class AppDetailFragment extends Fragment implements ComponentContainer, H
 	@Override
 	public void onClick(View v) {
 		if (v == btnSubmit) {
+			ratingBarUser.setVisibility(View.GONE);
 			btnSubmit.setVisibility(View.GONE);
 			comment.setVisibility(View.GONE);
 
 			Integer count = getShownCount();
-			Double rating = (getShownRating() * count + ratingBar.getRating()) / (count + 1);
+			Double rating = (getShownRating() * count + ratingBarUser.getRating()) / (count + 1);
 			++count;
 
 			Constants.runQuery(web, "UPDATE " + Constants.TABLERATINGS + " SET rating = " + rating
 					+ ", count = " + count + " WHERE _id = " + getShownId());
-			Constants.runQuery(web, "INSERT INTO " + Constants.TABLECOMMENTS
-					+ "(_gameid, user, comment, rating) VALUES(" + getShownId() + ", '"
-					+ getDatabase().getUserName() + "', '" + emplace(comment.getText()) + "', "
-					+ ratingBar.getRating() + ")");
+			Constants.runQuery(web,
+					"INSERT INTO " + Constants.TABLECOMMENTS + "(_gameid, user, comment, rating) VALUES("
+							+ getShownId() + ", '" + getDatabase().getUserName() + "', '"
+							+ emplace(comment.getText()) + "', " + ratingBar.getRating() + ")");
 
 			ratingText.setText(rating.toString().subSequence(0, Math.min(3, rating.toString().length()))
-					+ " / 5\nRated " + ratingBar.getRating() + " / 5");
+					+ " / 5\nRated " + ratingBarUser.getRating() + " / 5");
 
-			ratingBar.setEnabled(false);
 			ratingBar.setRating(rating.floatValue());
 
 			tinyDB.StoreValue(getShownId().toString(), true);
@@ -250,8 +252,8 @@ public class AppDetailFragment extends Fragment implements ComponentContainer, H
 
 		ListView lv = (ListView) getActivity().findViewById(R.id.commentList);
 		SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.list_item_comment,
-				new String[] { "user", "comment", "rating" }, new int[] { android.R.id.text1,
-						android.R.id.text2, R.id.ratingBar });
+				new String[] { "user", "comment", "rating" },
+				new int[] { android.R.id.text1, android.R.id.text2, R.id.ratingBar });
 		adapter.setViewBinder(new ViewBinder() {
 
 			@Override
@@ -283,13 +285,13 @@ public class AppDetailFragment extends Fragment implements ComponentContainer, H
 	}
 
 	private static String emplace(CharSequence str) {
-		return str.toString().replace("\n", Constants.NEWLINE_REPLACEMENT)
-				.replace(",", Constants.COMMA_REPLACEMENT);
+		return str.toString().replace("\n", Constants.NEWLINE_REPLACEMENT).replace(",",
+				Constants.COMMA_REPLACEMENT);
 	}
 
 	private static String unplace(String str) {
-		return str.replace(Constants.NEWLINE_REPLACEMENT, "\n")
-				.replace(Constants.COMMA_REPLACEMENT, ",");
+		return str.replace(Constants.NEWLINE_REPLACEMENT, "\n").replace(Constants.COMMA_REPLACEMENT,
+				",");
 	}
 
 	public final AbstractDatabaseForm getDatabase() {
