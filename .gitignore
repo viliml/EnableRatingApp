@@ -1,8 +1,10 @@
 bin
-bin/*
+gen
+proguard
+
 src/com/vlendvaj/era/Constants.java
 
-gen
+*.apk
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
