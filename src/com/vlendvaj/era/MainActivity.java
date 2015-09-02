@@ -1,30 +1,24 @@
 package com.vlendvaj.era;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.Component;
 import com.google.appinventor.components.runtime.EventDispatcher;
-import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.Notifier;
-import com.google.appinventor.components.runtime.TextBox;
 import com.google.appinventor.components.runtime.TinyDB;
 import com.google.appinventor.components.runtime.Web;
 import com.google.appinventor.components.runtime.collect.Lists;
 import com.google.appinventor.components.runtime.util.CsvUtil;
 import com.google.appinventor.components.runtime.util.YailList;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 
-public class MainActivity extends AbstractDatabaseForm {
+public class MainActivity extends AbstractDatabaseForm implements OnClickListener {
 
 	// TODO REMOVE!!
 	private static boolean DEBUG = false;
@@ -35,7 +29,7 @@ public class MainActivity extends AbstractDatabaseForm {
 
 	private Button btnAdd;
 	private Button btnApps;
-	private TextBox txbName;
+	private EditText txbName;
 	private Button btnSubmit;
 	// private Button btnDeleteDB;
 
@@ -59,7 +53,7 @@ public class MainActivity extends AbstractDatabaseForm {
 			userName = (String) tinyDB.GetValue("userName", "");
 		}
 
-		if (userName.isEmpty()) {
+		if (userName == null || userName.isEmpty()) {
 			startActivity(new Intent(this, FirstLaunchActivity.class));
 			return;
 		}
@@ -75,22 +69,20 @@ public class MainActivity extends AbstractDatabaseForm {
 		// }
 		// arr.recycle();
 
-		Scrollable(true);
-		Title(getString(R.string.app_name));
+		setContentView(R.layout.main_activity);
 
-		btnAdd = new Button(this);
-		btnAdd.Text(getString(R.string.btnAdd));
+		btnAdd = (Button) findViewById(R.id.btnAdd);
+		btnAdd.setOnClickListener(this);
 
-		btnApps = new Button(this);
-		btnApps.Text(getString(R.string.btnApps));
+		btnApps = (Button) findViewById(R.id.btnApps);
+		btnApps.setOnClickListener(this);
 
-		txbName = new TextBox(this);
-		txbName.Visible(false);
-		txbName.Hint(getString(R.string.txbName));
+		txbName = (EditText) findViewById(R.id.txbName);
 
-		btnSubmit = new Button(this);
-		btnSubmit.Visible(false);
-		btnSubmit.Text(getString(R.string.btnSubmit));
+		btnSubmit = (Button) findViewById(R.id.btnSubmit);
+		btnSubmit.setOnClickListener(this);
+
+		findViewById(R.id.btnLogOut).setOnClickListener(this);
 
 		// btnDeleteDB = new Button(this);
 		// btnDeleteDB.Text("!!ADMIN!!\nDELETE INTERNAL DATABASE");
@@ -99,43 +91,7 @@ public class MainActivity extends AbstractDatabaseForm {
 
 		notifier = new Notifier(this);
 
-		EventDispatcher.registerEventForDelegation(this, "MainClick", "Click");
 		EventDispatcher.registerEventForDelegation(this, "MainGotText", "GotText");
-
-		Drawable drawable = getBackgroundDrawable();
-		Field backgroundImagePath, backgroundDrawable, frameLayout;
-		Method setBackground;
-
-		try {
-			backgroundImagePath = Form.class.getDeclaredField("backgroundImagePath");
-			backgroundDrawable = Form.class.getDeclaredField("backgroundDrawable");
-			frameLayout = Form.class.getDeclaredField("frameLayout");
-			setBackground = Form.class.getDeclaredMethod("setBackground", View.class);
-
-			backgroundDrawable.setAccessible(true);
-			backgroundImagePath.setAccessible(true);
-			frameLayout.setAccessible(true);
-			setBackground.setAccessible(true);
-
-			backgroundImagePath.set(this, "Test123");
-			backgroundDrawable.set(this, drawable);
-			setBackground.invoke(this, frameLayout.get(this));
-		} catch (NoSuchFieldException | NoSuchMethodException | IllegalAccessException
-				| IllegalArgumentException | InvocationTargetException e) {
-			Log.wtf("test", e);
-		}
-	}
-
-	@SuppressWarnings("deprecation")
-	private Drawable getBackgroundDrawable() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-			return getBackgroundDrawableLollipop();
-		return getResources().getDrawable(R.drawable.background);
-	}
-
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private Drawable getBackgroundDrawableLollipop() {
-		return getDrawable(R.drawable.background);
 	}
 
 	// private TypedArray getThemeArgs() {
@@ -168,31 +124,7 @@ public class MainActivity extends AbstractDatabaseForm {
 	public boolean dispatchEvent(Component component, String componentName, String eventName,
 			Object[] args) {
 		Log.wtf(component.toString() + componentName, eventName);
-		if (component == btnAdd) {
-			switch (eventName) {
-			case "Click":
-				btnAddClick();
-				return true;
-			}
-			// } else if (component == btnDeleteDB) {
-			// switch (eventName) {
-			// case "Click":
-			// tinyDB.ClearAll();
-			// return true;
-			// }
-		} else if (component == btnApps) {
-			switch (eventName) {
-			case "Click":
-				btnAppsClick();
-				return true;
-			}
-		} else if (component == btnSubmit) {
-			switch (eventName) {
-			case "Click":
-				btnSubmitClick();
-				return true;
-			}
-		} else if (component == web) {
+		if (component == web) {
 			switch (eventName) {
 			case "GotText":
 				webGotText((String) args[0], (int) args[1], (String) args[2], (String) args[3]);
@@ -204,18 +136,18 @@ public class MainActivity extends AbstractDatabaseForm {
 	}
 
 	private void btnAddClick() {
-		txbName.Visible(true);
-		btnSubmit.Visible(true);
+		txbName.setVisibility(View.VISIBLE);
+		btnSubmit.setVisibility(View.VISIBLE);
 
-		txbName.Text("");
+		txbName.setText("");
 	}
 
 	private void refresh() {
 		Constants.runQuery(web, "SELECT _id, name, rating, count FROM " + Constants.TABLERATINGS
 				+ " WHERE visible = 1 ORDER BY rating DESC");
 
-		txbName.Visible(false);
-		btnSubmit.Visible(false);
+		txbName.setVisibility(View.GONE);
+		btnSubmit.setVisibility(View.GONE);
 	}
 
 	private void btnAppsClick() {
@@ -225,7 +157,7 @@ public class MainActivity extends AbstractDatabaseForm {
 
 	private void btnSubmitClick() {
 		Constants.runQuery(web, "INSERT INTO " + Constants.TABLERATINGS + "(name, visible)" + " VALUES('"
-				+ txbName.Text() + "', " + DEBUG + ")");
+				+ txbName.getText() + "', " + DEBUG + ")");
 	}
 
 	private void webGotText(String url, int responseCode, String responseType, String responseContent) {
@@ -285,5 +217,30 @@ public class MainActivity extends AbstractDatabaseForm {
 		setCounts(counts);
 
 		startActivity(new Intent(this, AppViewActivity.class));
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.btnAdd:
+			btnAddClick();
+			break;
+		// } else if (component == btnDeleteDB) {
+		// switch (eventName) {
+		// case "Click":
+		// tinyDB.ClearAll();
+		// return true;
+		// }
+		case R.id.btnApps:
+			btnAppsClick();
+			break;
+		case R.id.btnSubmit:
+			btnSubmitClick();
+			break;
+		case R.id.btnLogOut:
+			tinyDB.ClearTag("userName");
+			startActivity(new Intent(this, FirstLaunchActivity.class));
+			break;
+		}
 	}
 }

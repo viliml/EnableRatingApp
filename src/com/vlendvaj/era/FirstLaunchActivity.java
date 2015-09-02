@@ -1,17 +1,16 @@
 package com.vlendvaj.era;
 
-import android.content.Intent;
-
-import com.google.appinventor.components.runtime.Button;
-import com.google.appinventor.components.runtime.Component;
-import com.google.appinventor.components.runtime.EventDispatcher;
 import com.google.appinventor.components.runtime.Form;
-import com.google.appinventor.components.runtime.TextBox;
-import com.vlendvaj.era.R;
 
-public class FirstLaunchActivity extends Form {
+import android.content.Intent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 
-	private TextBox txbUserName;
+public class FirstLaunchActivity extends Form implements OnClickListener {
+
+	private EditText txbUserName;
 	private Button btnProceed;
 
 	@Override
@@ -20,24 +19,19 @@ public class FirstLaunchActivity extends Form {
 
 		Title(getString(R.string.firstLaunch));
 
-		txbUserName = new TextBox(this);
-		txbUserName.Hint(getString(R.string.txbUserName));
+		setContentView(R.layout.first_launch);
 
-		btnProceed = new Button(this);
-		btnProceed.Text(getString(R.string.btnProceed));
+		txbUserName = (EditText) findViewById(R.id.txbUserName);
 
-		EventDispatcher.registerEventForDelegation(this, "EventClick", "Click");
+		btnProceed = (Button) findViewById(R.id.btnProceed);
+
+		btnProceed.setOnClickListener(this);
 	}
 
 	@Override
-	public boolean dispatchEvent(Component component, String componentName, String eventName,
-			Object[] args) {
-		if (component == btnProceed && eventName == "Click") {
-			startActivity(new Intent(this, MainActivity.class).putExtra(MainActivity.EXTRA_USERNAME_TAG,
-					txbUserName.Text()));
-			finish();
-			return true;
-		}
-		return false;
+	public void onClick(View v) {
+		startActivity(new Intent(this, MainActivity.class).putExtra(MainActivity.EXTRA_USERNAME_TAG,
+				txbUserName.getText().toString()));
+		finish();
 	}
 }

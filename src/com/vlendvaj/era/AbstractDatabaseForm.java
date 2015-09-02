@@ -2,15 +2,15 @@ package com.vlendvaj.era;
 
 import java.util.ArrayList;
 
-import android.util.Log;
-
 import com.google.appinventor.components.runtime.Component;
 import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.Notifier;
 import com.google.appinventor.components.runtime.TinyDB;
 import com.google.appinventor.components.runtime.collect.Lists;
-import com.vlendvaj.era.R;
+
 import com.vlendvaj.era.fragment.AppDetailFragment;
+
+import android.util.Log;
 
 @SuppressWarnings("unchecked")
 public abstract class AbstractDatabaseForm extends Form {
@@ -105,5 +105,11 @@ public abstract class AbstractDatabaseForm extends Form {
 				notifier.ShowMessageDialog(message, title, buttonText);
 			}
 		});
+	}
+
+	@Override
+	public boolean canDispatchEvent(Component component, String eventName) {
+		activeForm = this;
+		return true;
 	}
 }
