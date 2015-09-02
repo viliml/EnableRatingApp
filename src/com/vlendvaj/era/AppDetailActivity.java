@@ -1,14 +1,14 @@
 package com.vlendvaj.era;
 
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.util.Log;
-
 import com.google.appinventor.components.runtime.Component;
 import com.google.appinventor.components.runtime.Notifier;
 import com.google.appinventor.components.runtime.TinyDB;
 
 import com.vlendvaj.era.fragment.AppDetailFragment;
+
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.util.Log;
 
 public class AppDetailActivity extends AbstractDatabaseForm {
 
@@ -30,7 +30,8 @@ public class AppDetailActivity extends AbstractDatabaseForm {
 			AppDetailFragment fragment = new AppDetailFragment();
 			fragment.setArguments(getIntent().getExtras());
 
-			getFragmentManager().beginTransaction().add(android.R.id.content, fragment, "details").commit();
+			getFragmentManager().beginTransaction().add(android.R.id.content, fragment, "details")
+					.commit();
 		}
 	}
 

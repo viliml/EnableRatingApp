@@ -6,6 +6,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import com.google.appinventor.components.runtime.collect.Lists;
+import com.google.appinventor.components.runtime.collect.Maps;
+
+import com.vlendvaj.era.AbstractDatabaseForm;
+import com.vlendvaj.era.AppDetailActivity;
+import com.vlendvaj.era.AppViewActivity;
+import com.vlendvaj.era.R;
+
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.Context;
@@ -22,14 +30,6 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ListView;
-
-import com.google.appinventor.components.runtime.collect.Lists;
-import com.google.appinventor.components.runtime.collect.Maps;
-
-import com.vlendvaj.era.AbstractDatabaseForm;
-import com.vlendvaj.era.AppDetailActivity;
-import com.vlendvaj.era.AppViewActivity;
-import com.vlendvaj.era.R;
 
 public class AppListFragment extends ListFragment {
 
@@ -120,8 +120,8 @@ public class AppListFragment extends ListFragment {
 			if (position >= 0)
 				getListView().setItemChecked(position, true);
 
-			AppDetailFragment details = (AppDetailFragment) getFragmentManager().findFragmentById(
-					R.id.frameDetails);
+			AppDetailFragment details = (AppDetailFragment) getFragmentManager()
+					.findFragmentById(R.id.frameDetails);
 			if (details == null || details.getShownIndex() != index) {
 				details = AppDetailFragment.newInstance((int) index);
 
@@ -187,8 +187,8 @@ public class AppListFragment extends ListFragment {
 
 					if (mOriginalValues.get(MyAdapter.this) == null) {
 						synchronized (mLock) {
-							mOriginalValues.set(MyAdapter.this, new ArrayList<String>(
-									(List<String>) mObjects.get(MyAdapter.this)));
+							mOriginalValues.set(MyAdapter.this,
+									new ArrayList<String>((List<String>) mObjects.get(MyAdapter.this)));
 						}
 					}
 
