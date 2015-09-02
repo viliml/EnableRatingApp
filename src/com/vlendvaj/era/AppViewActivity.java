@@ -1,11 +1,10 @@
 package com.vlendvaj.era;
 
-import android.util.Log;
-
 import com.google.appinventor.components.runtime.Component;
 import com.google.appinventor.components.runtime.Notifier;
 import com.google.appinventor.components.runtime.TinyDB;
-import com.vlendvaj.era.R;
+
+import android.util.Log;
 
 public class AppViewActivity extends AbstractDatabaseForm {
 
