@@ -48,6 +48,7 @@ public class AppDetailFragment extends Fragment
 
 	private RatingBar ratingBar;
 	private TextView ratingText;
+	private TextView textView1;
 	private RatingBar ratingBarUser;
 	private EditText comment;
 	private Button btnSubmit;
@@ -105,6 +106,7 @@ public class AppDetailFragment extends Fragment
 		((TextView) getActivity().findViewById(R.id.appName)).setText(getShownName());
 		ratingBar = (RatingBar) getActivity().findViewById(R.id.ratingBar);
 		ratingText = (TextView) getActivity().findViewById(R.id.ratingText);
+		textView1 = (TextView) getActivity().findViewById(R.id.textView1);
 		ratingBarUser = (RatingBar) getActivity().findViewById(R.id.ratingBarUser);
 		btnSubmit = (Button) getActivity().findViewById(R.id.btnSubmit);
 		comment = (EditText) getActivity().findViewById(R.id.comment);
@@ -118,6 +120,7 @@ public class AppDetailFragment extends Fragment
 
 		if ((boolean) tinyDB.GetValue(getShownId().toString(), false)) {
 
+			textView1.setVisibility(View.GONE);
 			ratingBarUser.setVisibility(View.GONE);
 			btnSubmit.setVisibility(View.GONE);
 			comment.setVisibility(View.GONE);
@@ -133,6 +136,7 @@ public class AppDetailFragment extends Fragment
 	@Override
 	public void onClick(View v) {
 		if (v == btnSubmit) {
+			textView1.setVisibility(View.GONE);
 			ratingBarUser.setVisibility(View.GONE);
 			btnSubmit.setVisibility(View.GONE);
 			comment.setVisibility(View.GONE);
