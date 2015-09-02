@@ -44,4 +44,23 @@
         android:layout_height="wrap_content"
         android:text="Log Out" />
 
+    <Button
+        android:id="@+id/btnDeleteDB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="!!DELETE DATABASE!!" />
+
+    <EditText
+        android:id="@+id/txbSQL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="SQL command" />
+
+    <Button
+        android:id="@+id/btnSQL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Run SQL" />
+
 </LinearLayout>

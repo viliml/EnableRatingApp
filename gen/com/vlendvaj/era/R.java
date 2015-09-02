@@ -19,8 +19,10 @@ public final class R {
         public static final int appName=0x7f070003;
         public static final int btnAdd=0x7f07000d;
         public static final int btnApps=0x7f07000e;
+        public static final int btnDeleteDB=0x7f070011;
         public static final int btnLogOut=0x7f070010;
         public static final int btnProceed=0x7f07000b;
+        public static final int btnSQL=0x7f070013;
         public static final int btnSubmit=0x7f070008;
         public static final int comment=0x7f070007;
         public static final int commentList=0x7f070009;
@@ -30,6 +32,7 @@ public final class R {
         public static final int ratingBar=0x7f070005;
         public static final int ratingText=0x7f070006;
         public static final int txbName=0x7f07000f;
+        public static final int txbSQL=0x7f070012;
         public static final int txbUserName=0x7f07000a;
     }
     public static final class layout {

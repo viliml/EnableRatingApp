@@ -31,7 +31,9 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 	private Button btnApps;
 	private EditText txbName;
 	private Button btnSubmit;
-	// private Button btnDeleteDB;
+	private Button btnDeleteDB;
+	private EditText txbSQL;
+	private Button btnSQL;
 
 	private Web web;
 
@@ -84,8 +86,13 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 
 		findViewById(R.id.btnLogOut).setOnClickListener(this);
 
-		// btnDeleteDB = new Button(this);
-		// btnDeleteDB.Text("!!ADMIN!!\nDELETE INTERNAL DATABASE");
+		btnDeleteDB = (Button) findViewById(R.id.btnDeleteDB);
+		btnDeleteDB.setOnClickListener(this);
+
+		txbSQL = (EditText) findViewById(R.id.txbSQL);
+
+		btnSQL = (Button) findViewById(R.id.btnSQL);
+		btnSQL.setOnClickListener(this);
 
 		web = new Web(this);
 
@@ -225,12 +232,9 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 		case R.id.btnAdd:
 			btnAddClick();
 			break;
-		// } else if (component == btnDeleteDB) {
-		// switch (eventName) {
-		// case "Click":
-		// tinyDB.ClearAll();
-		// return true;
-		// }
+		case R.id.btnDeleteDB:
+			tinyDB.ClearAll();
+			break;
 		case R.id.btnApps:
 			btnAppsClick();
 			break;
@@ -240,6 +244,9 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 		case R.id.btnLogOut:
 			tinyDB.ClearTag("userName");
 			startActivity(new Intent(this, FirstLaunchActivity.class));
+			break;
+		case R.id.btnSQL:
+			Constants.runQuery(web, txbSQL.getText().toString());
 			break;
 		}
 	}
