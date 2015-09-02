@@ -1,4 +1,6 @@
 bin
+bin/*
+src/com/vlendvaj/era/Constants.java
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
