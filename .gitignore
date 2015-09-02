@@ -3,6 +3,7 @@ gen
 proguard
 
 src/com/vlendvaj/era/Constants.java
+src/com/vlendvaj/era/admin/Constants.java
 
 *.apk
 

@@ -1,4 +1,4 @@
-package com.vlendvaj.era;
+package com.vlendvaj.era.admin;
 
 import java.util.ArrayList;
 

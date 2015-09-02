@@ -1,10 +1,10 @@
-package com.vlendvaj.era;
+package com.vlendvaj.era.admin;
 
 import com.google.appinventor.components.runtime.Component;
 import com.google.appinventor.components.runtime.Notifier;
 import com.google.appinventor.components.runtime.TinyDB;
 
-import com.vlendvaj.era.fragment.AppDetailFragment;
+import com.vlendvaj.era.admin.fragment.AppDetailFragment;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

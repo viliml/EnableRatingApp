@@ -1,4 +1,4 @@
-package com.vlendvaj.era.fragment;
+package com.vlendvaj.era.admin.fragment;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -9,10 +9,10 @@ import java.util.Map;
 import com.google.appinventor.components.runtime.collect.Lists;
 import com.google.appinventor.components.runtime.collect.Maps;
 
-import com.vlendvaj.era.AbstractDatabaseForm;
-import com.vlendvaj.era.AppDetailActivity;
-import com.vlendvaj.era.AppViewActivity;
-import com.vlendvaj.era.R;
+import com.vlendvaj.era.admin.AbstractDatabaseForm;
+import com.vlendvaj.era.admin.AppDetailActivity;
+import com.vlendvaj.era.admin.AppViewActivity;
+import com.vlendvaj.era.admin.R;
 
 import android.app.FragmentTransaction;
 import android.app.ListFragment;

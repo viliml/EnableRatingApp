@@ -1,4 +1,4 @@
-package com.vlendvaj.era;
+package com.vlendvaj.era.admin;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import com.google.appinventor.components.runtime.Notifier;
 import com.google.appinventor.components.runtime.TinyDB;
 import com.google.appinventor.components.runtime.collect.Lists;
 
-import com.vlendvaj.era.fragment.AppDetailFragment;
+import com.vlendvaj.era.admin.fragment.AppDetailFragment;
 
 import android.util.Log;
 

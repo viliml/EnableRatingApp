@@ -1,4 +1,4 @@
-package com.vlendvaj.era;
+package com.vlendvaj.era.admin;
 
 import com.google.appinventor.components.runtime.Form;
 

@@ -1,4 +1,4 @@
-package com.vlendvaj.era.fragment;
+package com.vlendvaj.era.admin.fragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,11 +19,11 @@ import com.google.appinventor.components.runtime.collect.Maps;
 import com.google.appinventor.components.runtime.util.CsvUtil;
 import com.google.appinventor.components.runtime.util.YailList;
 
-import com.vlendvaj.era.AbstractDatabaseForm;
-import com.vlendvaj.era.AppDetailActivity;
-import com.vlendvaj.era.AppViewActivity;
-import com.vlendvaj.era.Constants;
-import com.vlendvaj.era.R;
+import com.vlendvaj.era.admin.AbstractDatabaseForm;
+import com.vlendvaj.era.admin.AppDetailActivity;
+import com.vlendvaj.era.admin.AppViewActivity;
+import com.vlendvaj.era.admin.Constants;
+import com.vlendvaj.era.admin.R;
 
 import android.app.Activity;
 import android.app.Fragment;
