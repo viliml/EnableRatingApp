@@ -23,6 +23,7 @@ import com.vlendvaj.era.AbstractDatabaseForm;
 import com.vlendvaj.era.AppDetailActivity;
 import com.vlendvaj.era.AppViewActivity;
 import com.vlendvaj.era.Constants;
+import com.vlendvaj.era.MainActivity;
 import com.vlendvaj.era.R;
 
 import android.app.Activity;
@@ -55,6 +56,8 @@ public class AppDetailFragment extends Fragment
 
 	private Web web;
 	private TinyDB tinyDB;
+
+	private List<Map<String, String>> data = Lists.newArrayList();
 
 	/**
 	 * Create a new instance of DetailsFragment, initialized to show the text at
@@ -112,14 +115,13 @@ public class AppDetailFragment extends Fragment
 		comment = (EditText) getActivity().findViewById(R.id.comment);
 
 		ratingText.setText(getShownRating().toString().subSequence(0,
-				Math.min(3, getShownRating().toString().length())) + " / 5");
+				Math.min(4, getShownRating().toString().length())) + " / 5");
 
 		ratingBar.setEnabled(false);
 		ratingBar.setStepSize(0.01f);
 		ratingBar.setRating(getShownRating().floatValue());
 
 		if ((boolean) tinyDB.GetValue(getShownId().toString(), false)) {
-
 			textView1.setVisibility(View.GONE);
 			ratingBarUser.setVisibility(View.GONE);
 			btnSubmit.setVisibility(View.GONE);
@@ -136,6 +138,12 @@ public class AppDetailFragment extends Fragment
 	@Override
 	public void onClick(View v) {
 		if (v == btnSubmit) {
+			if (comment.getText().length() == 0) {
+				getDatabase().showMessageDialog("Plase submit a comment along with your rating.",
+						"No comment", "Back");
+				return;
+			}
+
 			textView1.setVisibility(View.GONE);
 			ratingBarUser.setVisibility(View.GONE);
 			btnSubmit.setVisibility(View.GONE);
@@ -152,18 +160,27 @@ public class AppDetailFragment extends Fragment
 							+ getShownId() + ", '" + getDatabase().getUserName() + "', '"
 							+ emplace(comment.getText()) + "', " + ratingBar.getRating() + ")");
 
-			ratingText.setText(rating.toString().subSequence(0, Math.min(3, rating.toString().length()))
+			ratingText.setText(rating.toString().subSequence(0, Math.min(4, rating.toString().length()))
 					+ " / 5\nRated " + ratingBarUser.getRating() + " / 5");
 
 			ratingBar.setRating(rating.floatValue());
 
 			tinyDB.StoreValue(getShownId().toString(), true);
 
-			updateDatabase(count, rating);
+			updateDatabase(count, rating, comment.getText().toString());
 		}
 	}
 
-	private void updateDatabase(Integer count, Double rating) {
+	private void updateDatabase(Integer count, Double rating, String comment) {
+		Map<String, String> row = Maps.newHashMap();
+
+		row.put("user", MainActivity.userName);
+		row.put("comment", comment);
+		row.put("rating", rating.toString());
+		data.add(row);
+
+		_updateComments();
+
 		ArrayList<Integer> ids = getDatabase().getIds();
 		ArrayList<String> names = getDatabase().getNames();
 		ArrayList<Double> ratings = getDatabase().getRatings();
@@ -231,7 +248,7 @@ public class AppDetailFragment extends Fragment
 
 	@SuppressWarnings("unchecked")
 	private void updateComments(YailList list) {
-		List<Map<String, String>> data = Lists.newArrayList();
+		data = Lists.newArrayList();
 
 		boolean first = true;
 
@@ -246,9 +263,12 @@ public class AppDetailFragment extends Fragment
 			row.put("comment", unplace(sublist.getString(1)));
 			row.put("rating", sublist.getString(2));
 			data.add(row);
-
 		}
 
+		_updateComments();
+	}
+
+	private void _updateComments() {
 		ListView lv = (ListView) getActivity().findViewById(R.id.commentList);
 		SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.list_item_comment,
 				new String[] { "user", "comment", "rating" },
