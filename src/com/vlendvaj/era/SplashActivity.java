@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,12 +31,15 @@ public class SplashActivity extends Activity implements OnClickListener {
 		
 		str1.setSpan(new StyleSpan(Typeface.BOLD), 0, 1, 0);
 		str1.setSpan(new StyleSpan(Typeface.ITALIC), 1, str1.length(), 0);
+		str1.setSpan(new RelativeSizeSpan(2f / 3), 1, str1.length(), 0);
 		
 		str2.setSpan(new StyleSpan(Typeface.BOLD), 0, 1, 0);
 		str2.setSpan(new StyleSpan(Typeface.ITALIC), 1, str2.length(), 0);
+		str2.setSpan(new RelativeSizeSpan(2f / 3), 1, str2.length(), 0);
 		
 		str3.setSpan(new StyleSpan(Typeface.BOLD), 0, 1, 0);
 		str3.setSpan(new StyleSpan(Typeface.ITALIC), 1, str3.length(), 0);
+		str3.setSpan(new RelativeSizeSpan(2f / 3), 1, str3.length(), 0);
 		
 		builder.append(str1).append('\n').append(str2).append('\n').append(str3);
 		
