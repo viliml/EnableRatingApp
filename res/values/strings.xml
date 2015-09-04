@@ -15,5 +15,7 @@
     <string name="test">Test</string>
     <string name="textRatingSubmit">Rate this game:</string>
     <string name="logOut">Log Out</string>
+    <string name="splashTitle">Enable\nRating\nApplication</string>
+    <string name="splashDescription">An app for rating violence in kids\' games and apps.\nRate 5 starts for nice apps, 0 stars for apps with abuse.</string>
 
 </resources>

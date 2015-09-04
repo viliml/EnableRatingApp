@@ -31,7 +31,7 @@ public class FirstLaunchActivity extends Form implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		startActivity(new Intent(this, MainActivity.class).putExtra(MainActivity.EXTRA_USERNAME_TAG,
-				txbUserName.getText().toString()));
+				txbUserName.getText().toString()).putExtras(getIntent()));
 		finish();
 	}
 }

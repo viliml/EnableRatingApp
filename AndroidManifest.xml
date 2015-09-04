@@ -26,6 +26,7 @@
         <activity android:name=".FirstLaunchActivity"></activity>
         <activity android:name=".AppViewActivity"></activity>
         <activity android:name=".AppDetailActivity"></activity>
+        <activity android:name=".SplashActivity"></activity>
     </application>
 
 </manifest>
