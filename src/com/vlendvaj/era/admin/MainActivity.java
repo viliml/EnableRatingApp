@@ -138,7 +138,6 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 	@Override
 	public boolean dispatchEvent(Component component, String componentName, String eventName,
 			Object[] args) {
-		Log.wtf(component.toString() + componentName, eventName);
 		if (component == web) {
 			switch (eventName) {
 			case "GotText":
@@ -188,7 +187,6 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 				}
 				break;
 			case 201:
-				Log.wtf("kzugcn", responseContent);
 				refresh();
 				break;
 			default:
@@ -196,7 +194,7 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 						getString(R.string.error) + " " + responseCode, "OK");
 			}
 		} catch (Exception e) {
-			Log.wtf("CSV", "Thrown Exception in CSV parsing", e);
+			Log.e("CSV", "Thrown Exception in CSV parsing", e);
 		}
 	}
 
@@ -208,8 +206,6 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 		ArrayList<Double> ratings = Lists.newArrayList();
 		ArrayList<Integer> counts = Lists.newArrayList();
 
-		Log.wtf("list", list.toJSONString());
-
 		boolean first = true;
 
 		for (YailList sublist : (Iterable<YailList>) list.getCdr()) {
@@ -217,8 +213,6 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 				first = false;
 				continue;
 			}
-
-			Log.wtf("sublist", sublist.toJSONString());
 
 			ids.add(Integer.valueOf(sublist.getString(0)));
 			names.add(sublist.getString(1));
