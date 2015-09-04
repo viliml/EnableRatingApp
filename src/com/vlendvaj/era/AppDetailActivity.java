@@ -8,7 +8,6 @@ import com.vlendvaj.era.fragment.AppDetailFragment;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 
 public class AppDetailActivity extends AbstractDatabaseForm {
 
@@ -56,6 +55,6 @@ public class AppDetailActivity extends AbstractDatabaseForm {
 	@Override
 	public void _dispatchErrorOccurredEvent(Component component, String functionName, int errorNumber,
 			String messageArgs) {
-		Log.wtf("Detail Error", component.toString());
+		//No-op
 	}
 }
