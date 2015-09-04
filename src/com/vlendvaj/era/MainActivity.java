@@ -24,6 +24,7 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 	private static boolean DEBUG = false;
 
 	public static final String EXTRA_USERNAME_TAG = MainActivity.class.getName() + ".username";
+	public static final String EXTRA_SPLASH_TAG = MainActivity.class.getName() + ".splash";
 
 	public static String userName;
 
@@ -43,6 +44,12 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 
 	@Override
 	protected void $define() {
+		
+		if (!getIntent().getBooleanExtra(EXTRA_SPLASH_TAG, false)) {
+			startActivity(new Intent(this, SplashActivity.class));
+			finish();
+			return;
+		}
 
 		tinyDB = new TinyDB(this);
 
@@ -54,7 +61,8 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 		}
 
 		if (userName == null || userName.isEmpty()) {
-			startActivity(new Intent(this, FirstLaunchActivity.class));
+			startActivity(new Intent(this, FirstLaunchActivity.class).putExtras(getIntent()));
+			finish();
 			return;
 		}
 
