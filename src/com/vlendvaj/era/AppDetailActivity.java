@@ -25,6 +25,8 @@ public class AppDetailActivity extends AbstractDatabaseForm {
 			return;
 		}
 
+		Title(getString(R.string.app_name));
+
 		if (savedInstanceState == null) {
 			AppDetailFragment fragment = new AppDetailFragment();
 			fragment.setArguments(getIntent().getExtras());
@@ -55,6 +57,6 @@ public class AppDetailActivity extends AbstractDatabaseForm {
 	@Override
 	public void _dispatchErrorOccurredEvent(Component component, String functionName, int errorNumber,
 			String messageArgs) {
-		//No-op
+		// No-op
 	}
 }

@@ -13,6 +13,8 @@ public class AppViewActivity extends AbstractDatabaseForm {
 
 		setContentView(R.layout.appview_activity);
 
+		Title(getString(R.string.app_name));
+
 		tinyDB = new TinyDB(this);
 		notifier = new Notifier(this);
 	}
@@ -20,6 +22,6 @@ public class AppViewActivity extends AbstractDatabaseForm {
 	@Override
 	public void _dispatchErrorOccurredEvent(Component component, String functionName, int errorNumber,
 			String messageArgs) {
-		//No-op
+		// No-op
 	}
 }
