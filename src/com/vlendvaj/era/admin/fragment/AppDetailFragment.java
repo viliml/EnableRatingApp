@@ -207,6 +207,7 @@ public class AppDetailFragment extends Fragment
 	@Override
 	public boolean dispatchEvent(Component component, String componentName, String eventName,
 			Object[] args) {
+		Log.wtf(component.toString() + componentName, eventName);
 		if (component == web && eventName == "GotText") {
 			webGotText((String) args[0], (int) args[1], (String) args[2], (String) args[3]);
 			return true;
@@ -215,6 +216,7 @@ public class AppDetailFragment extends Fragment
 	}
 
 	private void webGotText(String url, int responseCode, String responseType, String responseContent) {
+		Log.wtf(responseType + responseCode, responseContent);
 		try {
 			switch (responseCode) {
 			case 200:
@@ -247,7 +249,10 @@ public class AppDetailFragment extends Fragment
 			row.put("rating", sublist.getString(2));
 			data.add(row);
 
+			Log.wtf("row", row.toString());
 		}
+
+		Log.wtf("data", data.toString());
 
 		ListView lv = (ListView) getActivity().findViewById(R.id.commentList);
 		SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, R.layout.list_item_comment,
@@ -257,6 +262,7 @@ public class AppDetailFragment extends Fragment
 
 			@Override
 			public boolean setViewValue(View view, Object data, String textRepresentation) {
+				Log.wtf("test " + view.getId(), textRepresentation);
 				switch (view.getId()) {
 				case android.R.id.text1:
 				case android.R.id.text2:

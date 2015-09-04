@@ -10,6 +10,8 @@ import com.google.appinventor.components.runtime.collect.Lists;
 
 import com.vlendvaj.era.admin.fragment.AppDetailFragment;
 
+import android.util.Log;
+
 @SuppressWarnings("unchecked")
 public abstract class AbstractDatabaseForm extends Form {
 
@@ -76,6 +78,8 @@ public abstract class AbstractDatabaseForm extends Form {
 			else
 				str.append(obj);
 		}
+
+		Log.wtf(getString(R.string.error) + " " + errorNumber, str.toString());
 
 		if (component.getDispatchDelegate() instanceof AppDetailFragment) {
 			((AppDetailFragment) getFragmentManager().findFragmentByTag("details"))
