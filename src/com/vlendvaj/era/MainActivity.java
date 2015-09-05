@@ -176,6 +176,7 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 				switch (state) {
 				case SHOW_APPS:
 					updateList(CsvUtil.fromCsvTable(responseContent));
+					state = State.NORMAL;
 					break;
 				default:
 					break;
