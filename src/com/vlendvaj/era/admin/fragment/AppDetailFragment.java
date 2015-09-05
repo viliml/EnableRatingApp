@@ -121,7 +121,7 @@ public class AppDetailFragment extends Fragment
 		ratingBar.setStepSize(0.01f);
 		ratingBar.setRating(getShownRating().floatValue());
 
-		if ((boolean) tinyDB.GetValue(getShownId().toString(), false)) {
+		if ((boolean) tinyDB.GetValue(MainActivity.userName + getShownId().toString(), false)) {
 			textView1.setVisibility(View.GONE);
 			ratingBarUser.setVisibility(View.GONE);
 			btnSubmit.setVisibility(View.GONE);
@@ -165,7 +165,7 @@ public class AppDetailFragment extends Fragment
 
 			ratingBar.setRating(rating.floatValue());
 
-			tinyDB.StoreValue(getShownId().toString(), true);
+			tinyDB.StoreValue(MainActivity.userName + getShownId().toString(), true);
 
 			updateDatabase(count, rating, comment.getText().toString());
 		}
