@@ -15,6 +15,8 @@ public class AppViewActivity extends AbstractDatabaseForm {
 
 		setContentView(R.layout.appview_activity);
 
+		Title(getString(R.string.app_name));
+
 		tinyDB = new TinyDB(this);
 		notifier = new Notifier(this);
 	}

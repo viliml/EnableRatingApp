@@ -46,7 +46,7 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 
 	@Override
 	protected void $define() {
-		
+
 		if (!getIntent().getBooleanExtra(EXTRA_SPLASH_TAG, false)) {
 			startActivity(new Intent(this, SplashActivity.class));
 			finish();
@@ -80,6 +80,8 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 		// arr.recycle();
 
 		setContentView(R.layout.main_activity);
+
+		Title(getString(R.string.app_name));
 
 		btnAdd = (Button) findViewById(R.id.btnAdd);
 		btnAdd.setOnClickListener(this);
@@ -182,6 +184,7 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 				switch (state) {
 				case SHOW_APPS:
 					updateList(CsvUtil.fromCsvTable(responseContent));
+					state = State.NORMAL;
 					break;
 				default:
 					break;
