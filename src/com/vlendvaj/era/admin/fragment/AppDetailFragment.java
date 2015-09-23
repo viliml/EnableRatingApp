@@ -107,6 +107,8 @@ public class AppDetailFragment extends Fragment
 				+ " WHERE _gameid = " + getDatabase().getIds().get(getShownIndex()));
 
 		((TextView) getActivity().findViewById(R.id.appName)).setText(getShownName());
+		if (!getShownVisibility())
+			((TextView) getActivity().findViewById(R.id.appName)).setTextColor(0xFF0000);
 		ratingBar = (RatingBar) getActivity().findViewById(R.id.ratingBar);
 		ratingText = (TextView) getActivity().findViewById(R.id.ratingText);
 		textView1 = (TextView) getActivity().findViewById(R.id.textView1);
@@ -336,6 +338,10 @@ public class AppDetailFragment extends Fragment
 
 	public Integer getShownCount() {
 		return getDatabase().getCounts().get(getShownIndex());
+	}
+
+	public Boolean getShownVisibility() {
+		return getDatabase().getVisibilities().get(getShownIndex());
 	}
 
 	@Override

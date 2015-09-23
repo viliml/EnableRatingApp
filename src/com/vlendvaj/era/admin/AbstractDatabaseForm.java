@@ -46,6 +46,10 @@ public abstract class AbstractDatabaseForm extends Form {
 		return (ArrayList<Integer>) tinyDB.GetValue("counts", Lists.<Integer> newArrayList());
 	}
 
+	public ArrayList<Boolean> getVisibilities() {
+		return (ArrayList<Boolean>) tinyDB.GetValue("visibilities", Lists.<Boolean> newArrayList());
+	}
+
 	public void setIds(ArrayList<Integer> list) {
 		tinyDB.StoreValue("ids", list.toArray());
 	}
@@ -65,6 +69,10 @@ public abstract class AbstractDatabaseForm extends Form {
 
 	public void setCounts(ArrayList<Integer> list) {
 		tinyDB.StoreValue("counts", list.toArray());
+	}
+
+	public void setVisibilities(ArrayList<Boolean> list) {
+		tinyDB.StoreValue("visibilities", list.toArray());
 	}
 
 	@Override

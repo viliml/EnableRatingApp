@@ -160,8 +160,8 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 	}
 
 	private void refresh() {
-		Constants.runQuery(web, "SELECT _id, name, rating, count FROM " + Constants.TABLERATINGS
-				+ " WHERE visible = 1 ORDER BY rating DESC");
+		Constants.runQuery(web, "SELECT _id, name, rating, count, visible FROM " + Constants.TABLERATINGS
+				+ " ORDER BY rating DESC");
 
 		txbName.setVisibility(View.GONE);
 		btnSubmit.setVisibility(View.GONE);
@@ -210,6 +210,7 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 		ArrayList<String> names = Lists.newArrayList();
 		ArrayList<Double> ratings = Lists.newArrayList();
 		ArrayList<Integer> counts = Lists.newArrayList();
+		ArrayList<Boolean> visibilities = Lists.newArrayList();
 
 		Log.wtf("list", list.toJSONString());
 
@@ -227,12 +228,15 @@ public class MainActivity extends AbstractDatabaseForm implements OnClickListene
 			names.add(sublist.getString(1));
 			ratings.add(Double.valueOf(sublist.getString(2)));
 			counts.add(Integer.valueOf(sublist.getString(3)));
+			visibilities.add(Boolean.valueOf(sublist.getString(4))
+					|| (Integer.valueOf(sublist.getString(4)) == 1));
 		}
 
 		setIds(ids);
 		setNames(names);
 		setRatings(ratings);
 		setCounts(counts);
+		setVisibilities(visibilities);
 
 		startActivity(new Intent(this, AppViewActivity.class));
 	}
