@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Enable Aplikacija za Ocjenjivanje</string>
+    <string name="app_name">Adminska Enable Aplikacija za Ocjenjivanje</string>
     <string name="btnSubmit">Pošalji ocjenu</string>
     <string name="btnAdd">Dodaj novu aplikaciju</string>
     <string name="btnApps">Prikaži popis aplikacija</string>

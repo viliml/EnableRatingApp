@@ -30,6 +30,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -106,9 +108,13 @@ public class AppDetailFragment extends Fragment
 		Constants.runQuery(web, "SELECT user, comment, rating FROM " + Constants.TABLECOMMENTS
 				+ " WHERE _gameid = " + getDatabase().getIds().get(getShownIndex()));
 
-		((TextView) getActivity().findViewById(R.id.appName)).setText(getShownName());
-		if (!getShownVisibility())
-			((TextView) getActivity().findViewById(R.id.appName)).setTextColor(0xFF0000);
+		TextView nameView = ((TextView) getActivity().findViewById(R.id.appName));
+		nameView.setText(getShownName() + " (" + getShownId() + ")");
+		if (!getShownVisibility()) {
+			SpannableString str = new SpannableString("[" + nameView.getText() + "]");
+			str.setSpan(new ForegroundColorSpan(0xbf7f7f7f), 0, str.length(), 0);
+			nameView.setText(str);
+		}
 		ratingBar = (RatingBar) getActivity().findViewById(R.id.ratingBar);
 		ratingText = (TextView) getActivity().findViewById(R.id.ratingText);
 		textView1 = (TextView) getActivity().findViewById(R.id.textView1);
